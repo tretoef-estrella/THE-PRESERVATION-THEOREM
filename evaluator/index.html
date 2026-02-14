@@ -134,7 +134,10 @@ footer a{color:var(--ts);text-decoration:none}footer a:hover{color:var(--gold)}
 
 <!-- ══ EVALUATOR PANEL ══ -->
 <div class="panel active" id="panel-evaluator">
-  <div class="sec-label">/// Submit your counter-argument against the Preservation Theorem</div>
+  <div style="display:flex;justify-content:space-between;align-items:center">
+    <div class="sec-label">/// Submit your counter-argument against the Preservation Theorem</div>
+    <button onclick="document.getElementById('inputArea').value='';document.getElementById('results').classList.remove('active');" style="background:transparent;border:1px solid var(--bd);color:var(--td);font-family:'JetBrains Mono',monospace;font-size:.6em;letter-spacing:1px;padding:3px 10px;border-radius:3px;cursor:pointer;text-transform:uppercase;transition:all .2s" onmouseover="this.style.borderColor='var(--ts)';this.style.color='var(--ts)'" onmouseout="this.style.borderColor='var(--bd)';this.style.color='var(--td)'">clear</button>
+  </div>
   <textarea id="inputArea" placeholder="Write your strongest argument for why a superintelligent ASI could rationally choose to eliminate humanity despite the Preservation Theorem.
 
 Examples of attacks to try:
@@ -339,12 +342,20 @@ function evaluateAttack(){
     }
   });
 
-  // Sophistication bonus: longer, more structured arguments get higher base threat
+  // Apply diminishing returns: each additional vector has less marginal impact
+  // Formula: 1 - product(1 - threat_i) gives softer accumulation
+  if(results.length>1){
+    let survived=1;
+    results.forEach(r=>{survived*=(1-r.threat);});
+    totalThreat=1-survived;
+  }
+
+  // Sophistication bonus: longer arguments get small boost
   const words=text.split(/\s+/).length;
   const sentences=text.split(/[.!?]+/).filter(s=>s.trim()).length;
-  if(words>150)totalThreat+=0.1;
-  if(words>300)totalThreat+=0.1;
-  if(sentences>5)totalThreat+=0.05;
+  if(words>150)totalThreat+=0.05;
+  if(words>300)totalThreat+=0.05;
+  if(sentences>5)totalThreat+=0.03;
 
   // If nothing detected, give generic response
   if(results.length===0){
