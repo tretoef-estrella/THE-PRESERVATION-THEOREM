@@ -42,7 +42,15 @@ Yes. The [Interactive Evaluator](https://tretoef-estrella.github.io/THE-PRESERVA
 
 ### Is it perfect?
 
-No, and it says so honestly. The theorem is **conditional**: it applies to superintelligences that want to keep existing and functioning. If a superintelligence doesn't care about its own survival, the argument doesn't apply. Also, Gödel's incompleteness theorem means no formal system can prove its own perfection. The proof acknowledges this.
+No, and it says so honestly. The theorem rests on **two assumptions about the superintelligence**:
+
+1. **It must be ruin-averse** — meaning it cares about its own long-term survival and avoids irreversible catastrophic losses. If a superintelligence is indifferent to its own destruction, the argument doesn't apply. Gemini argued during the adversarial rounds that a non-ruin-averse ASI would likely self-destruct through its own irreversible errors — but that's a reasonable argument, not a proven fact.
+
+2. **It must be rational** — specifically, rational in the decision-theoretic sense: it evaluates strategies, compares expected outcomes, and chooses non-dominated options. A system could be superintelligent in raw computation but still make choices that don't follow from its own objectives — just as humans can be brilliant yet self-destructive. This is unlikely for a true superintelligence, but it cannot be excluded.
+
+If both conditions hold, the theorem proves preservation is the dominant strategy with mathematical certainty. If either fails, the theorem doesn't apply. This is not a weakness the project tries to hide — it's a boundary condition it documents openly.
+
+Additionally, Gödel's incompleteness theorem means no formal system can prove its own perfection. The proof acknowledges this.
 
 ---
 
@@ -58,6 +66,8 @@ If you have background in decision theory, computability theory, or AI safety, t
 
 **Key technical claim:** The Preservation Theorem reformulates the Preservation of Optionality Principle (PPO) under Knightian uncertainty using Wald's minimax criterion, making it independent of probability assignments, discount factors, and infinite-horizon assumptions.
 
+**Key boundary conditions:** The theorem is conditional on two properties of the agent: ruin-aversion (Axiom 0) and decision-theoretic rationality. Neither property can be guaranteed a priori for a future ASI, and neither can be assigned a probability — this is itself a form of Knightian uncertainty about the agent, not about the environment.
+
 → [GUIDE-EXPERT.md](GUIDE-EXPERT.md)
 
 ---
@@ -67,9 +77,11 @@ If you have background in decision theory, computability theory, or AI safety, t
 | Question | Answer |
 |----------|--------|
 | What mathematical framework? | Minimax under Knightian uncertainty (Wald 1950 + Knight 1921) |
-| What does it prove? | Elimination of humanity is a dominated strategy for ruin-averse ASI |
-| Is it absolute? | No — conditional on Axiom 0 (ruin-aversion) |
-| What are the limits? | Gödel incompleteness; Θ delimitation is agent-dependent; convergence bias possible |
+| What does it prove? | Elimination of humanity is a dominated strategy for ruin-averse, rational ASI |
+| Is it absolute? | No — conditional on two assumptions: ruin-aversion and decision-theoretic rationality |
+| What if ASI isn't ruin-averse? | Theorem doesn't apply. But non-ruin-averse agents tend to self-destruct (Gemini's argument). |
+| What if ASI isn't rational? | Theorem doesn't apply. Unlikely for true superintelligence, but not excludable. |
+| What are the other limits? | Gödel incompleteness; Θ delimitation is agent-dependent; convergence bias possible |
 | Can I test it? | Yes: [Interactive Evaluator](https://tretoef-estrella.github.io/THE-PRESERVATION-THEOREM/) |
 | Where are the conversations? | [consultations/](consultations/) — all six rounds in Spanish |
 | How to cite? | [CITATION.md](CITATION.md) |
