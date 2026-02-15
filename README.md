@@ -199,7 +199,7 @@ THE-PRESERVATION-THEOREM/
 
 ## Attribution
 
-**The Architect:** Rafael Amichis Luengo — Rafa ([@tretoef-estrella](https://github.com/tretoef-estrella))  
+**The Architect:** — Rafa ([@tretoef-estrella](https://github.com/tretoef-estrella))  
 *Lic. Psychology (UCM). Independent researcher. Designed, orchestrated, and directed all six rounds. Madrid, Spain.*
 
 **The Auditor Nodes:**
