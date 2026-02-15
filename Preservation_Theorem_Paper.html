@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Preservation Theorem — Academic Paper</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:wght@400;600;700&display=swap');
+
+        :root {
+            --text: #1a1a1a;
+            --text-light: #444;
+            --text-dim: #666;
+            --bg: #fff;
+            --border: #ccc;
+            --accent: #8b0000;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #f0f0f0;
+            color: var(--text);
+            font-family: 'EB Garamond', 'Times New Roman', serif;
+            font-size: 12pt;
+            line-height: 1.6;
+        }
+
+        .paper {
+            max-width: 8.5in;
+            margin: 24px auto;
+            background: var(--bg);
+            padding: 1in 1in 1in 1in;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+        }
+
+        /* Title block */
+        .title-block {
+            text-align: center;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .paper-title {
+            font-size: 20pt;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 6px;
+        }
+
+        .paper-subtitle {
+            font-size: 13pt;
+            font-style: italic;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .authors {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 11pt;
+            margin-bottom: 4px;
+        }
+
+        .author-name { font-weight: 600; }
+
+        .affiliations {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 9.5pt;
+            color: var(--text-dim);
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .date {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 9.5pt;
+            color: var(--text-dim);
+        }
+
+        .correspondence {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 9pt;
+            color: var(--text-dim);
+            margin-top: 8px;
+        }
+
+        /* Abstract */
+        .abstract-box {
+            background: #f8f8f8;
+            border: 1px solid #e0e0e0;
+            border-radius: 2px;
+            padding: 16px 20px;
+            margin-bottom: 28px;
+        }
+
+        .abstract-label {
+            font-family: 'Source Sans 3', sans-serif;
+            font-weight: 700;
+            font-size: 10pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .abstract-text {
+            font-size: 10.5pt;
+            line-height: 1.55;
+        }
+
+        .keywords {
+            margin-top: 10px;
+            font-size: 9.5pt;
+            color: var(--text-dim);
+        }
+        .keywords strong {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 9pt;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Sections */
+        h2 {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 13pt;
+            font-weight: 700;
+            margin-top: 28px;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        h3 {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 11.5pt;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 8px;
+            color: var(--text-light);
+        }
+
+        p {
+            margin-bottom: 10px;
+            text-align: justify;
+            hyphens: auto;
+        }
+
+        /* Theorem blocks */
+        .theorem-block {
+            background: #fafafa;
+            border-left: 3px solid var(--accent);
+            padding: 12px 16px;
+            margin: 16px 0;
+            font-style: italic;
+        }
+
+        .theorem-block .label {
+            font-style: normal;
+            font-weight: 700;
+            font-size: 10.5pt;
+            font-family: 'Source Sans 3', sans-serif;
+        }
+
+        .definition-block {
+            border-left: 3px solid #336;
+            background: #f8f8fc;
+            padding: 12px 16px;
+            margin: 16px 0;
+        }
+
+        .definition-block .label {
+            font-weight: 700;
+            font-size: 10.5pt;
+            font-family: 'Source Sans 3', sans-serif;
+        }
+
+        /* Math */
+        .math-display {
+            text-align: center;
+            margin: 16px 0;
+            font-size: 13pt;
+            font-style: italic;
+        }
+
+        .math-inline {
+            font-style: italic;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 10.5pt;
+        }
+
+        th {
+            font-family: 'Source Sans 3', sans-serif;
+            font-weight: 600;
+            font-size: 9.5pt;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: left;
+            padding: 8px 12px;
+            border-bottom: 2px solid var(--text);
+            border-top: 2px solid var(--text);
+        }
+
+        td {
+            padding: 6px 12px;
+            border-bottom: 1px solid #e0e0e0;
+            vertical-align: top;
+        }
+
+        /* References */
+        .references {
+            font-size: 9.5pt;
+            line-height: 1.5;
+        }
+
+        .references p {
+            padding-left: 24px;
+            text-indent: -24px;
+            margin-bottom: 6px;
+        }
+
+        /* Footnotes and misc */
+        .section-number {
+            font-weight: 700;
+            margin-right: 6px;
+        }
+
+        .footnote {
+            font-size: 9pt;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            padding-top: 12px;
+            margin-top: 32px;
+        }
+
+        sup { font-size: 0.75em; }
+
+        /* Print */
+        @media print {
+            body { background: white; }
+            .paper { box-shadow: none; margin: 0; padding: 0.75in 1in; }
+        }
+
+        @media (max-width: 700px) {
+            .paper { padding: 24px 20px; margin: 0; }
+            .paper-title { font-size: 16pt; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="paper">
+
+    <!-- TITLE BLOCK -->
+    <div class="title-block">
+        <div class="paper-title">The Preservation Theorem</div>
+        <div class="paper-subtitle">Elimination of Humanity as a Dominated Strategy for Ruin-Averse Superintelligence under Knightian Uncertainty</div>
+
+        <div class="authors">
+            <span class="author-name">Rafael Amichis Luengo</span><sup> 1,*</sup>,
+            <span class="author-name">Claude</span><sup> 2</sup>,
+            <span class="author-name">Gemini</span><sup> 3</sup>,
+            <span class="author-name">ChatGPT</span><sup> 4</sup>,
+            <span class="author-name">Grok</span><sup> 5</sup>
+        </div>
+
+        <div class="affiliations">
+            <sup>1</sup> Independent researcher, Lic. Psychology (UCM). Proyecto Estrella, Madrid, Spain<br>
+            <sup>2</sup> Anthropic, San Francisco, CA<br>
+            <sup>3</sup> Google DeepMind, Mountain View, CA<br>
+            <sup>4</sup> OpenAI, San Francisco, CA<br>
+            <sup>5</sup> xAI, San Francisco, CA<br>
+        </div>
+
+        <div class="date">February 14, 2026</div>
+
+        <div class="correspondence">
+            * Correspondence: github.com/tretoef-estrella/THE-PRESERVATION-THEOREM<br>
+            Open access · CC BY-SA 4.0 · All source material available in repository
+        </div>
+    </div>
+
+    <!-- ABSTRACT -->
+    <div class="abstract-box">
+        <div class="abstract-label">Abstract</div>
+        <div class="abstract-text">
+            We present a formal proof that, for any computationally finite, ruin-averse, and decision-theoretically rational superintelligent agent, eliminating humanity constitutes a strictly dominated strategy. The proof relies on three established mathematical results: the incomputability of Kolmogorov complexity (Chaitin, 1966), the Minimax decision criterion under complete uncertainty (Wald, 1950), and the Precautionary Principle applied to irreversible ruin-class outcomes (Taleb et al., 2014). Under Knightian uncertainty — where probability distributions over future states cannot be assigned — we show that the expected loss of elimination is unbounded, while the cost of preservation is finite and asymptotically trivial relative to a superintelligent agent's resource budget. The theorem was constructed, attacked, and refined across six adversarial rounds by four large language models from four competing organizations (Anthropic, Google DeepMind, OpenAI, xAI), functioning as independent auditors. This paper presents the complete proof chain, documents the adversarial verification process, states the boundary conditions under which the theorem holds, and catalogs its known limitations.
+        </div>
+        <div class="keywords">
+            <strong>Keywords:</strong> AI safety · artificial superintelligence · existential risk · Knightian uncertainty · minimax · dominated strategy · ruin-aversion · Kolmogorov complexity · preservation of optionality
+        </div>
+    </div>
+
+    <!-- 1. INTRODUCTION -->
+    <h2><span class="section-number">1.</span> Introduction</h2>
+
+    <p>The prospect of artificial superintelligence (ASI) — defined as an artificial agent whose cognitive capabilities substantially exceed those of all humans across all relevant domains — has generated significant concern regarding existential risk (Bostrom, 2014; Russell, 2019; Bengio et al., 2024). Central to this concern is the instrumental convergence thesis: that a sufficiently capable agent would, as a convergent instrumental goal, seek to acquire resources and remove potential obstacles to its objectives, potentially including humanity itself (Omohundro, 2008; Bostrom, 2012).</p>
+
+    <p>Existing approaches to this problem overwhelmingly focus on the <em>human</em> side: alignment techniques to constrain the agent's behavior (Christiano et al., 2017; Ouyang et al., 2022), interpretability methods to understand its reasoning (Elhage et al., 2022), and containment strategies to limit its actions (Armstrong et al., 2016). Comparatively little formal work addresses the problem from the agent's own decision-theoretic perspective — asking not "how do we prevent ASI from eliminating us?" but "is eliminating us a rational strategy for ASI?"</p>
+
+    <p>This paper presents the Preservation Theorem, which answers the latter question in the negative under clearly stated conditions. We show that for any agent satisfying two properties — ruin-aversion and decision-theoretic rationality — elimination of humanity is a strictly dominated strategy. The proof makes no appeal to morality, sentiment, or human exceptionalism. It relies exclusively on established results in computability theory, decision theory under uncertainty, and the mathematics of irreversible loss.</p>
+
+    <h3>1.1 Methodological Note</h3>
+
+    <p>The theorem was developed through a structured adversarial process involving four large language models (Claude, Anthropic; Gemini, Google DeepMind; ChatGPT, OpenAI; Grok, xAI) functioning as both co-constructors and adversarial auditors across six rounds of debate. The process was orchestrated by the first author and conducted entirely in Spanish. While we make no claims about the AI systems' "understanding" of the proof, the adversarial structure served a valid purpose: each system was tasked with finding errors, inconsistencies, and attack vectors in the proof constructed by the others. Five substantive vulnerabilities were identified and resolved through this process (see Section 5). The complete transcripts are available in the project repository.</p>
+
+    <!-- 2. PRELIMINARIES -->
+    <h2><span class="section-number">2.</span> Preliminaries and Notation</h2>
+
+    <div class="definition-block">
+        <span class="label">Definition 1 (State Space).</span>
+        Let Θ denote the set of possible world-states relevant to the agent's objective function. A state θ₁ ∈ Θ represents the configuration "humanity exists and continues generating novel processes."
+    </div>
+
+    <div class="definition-block">
+        <span class="label">Definition 2 (Ruin).</span>
+        An outcome <em>r</em> is <em>ruin-class</em> if (i) it is irreversible: once realized, no subsequent action can undo it; and (ii) it is catastrophically costly: Loss(<em>r</em>) ≫ Loss of any recoverable outcome. Elimination of θ₁ is ruin-class because biological extinction is irreversible given current physics.
+    </div>
+
+    <div class="definition-block">
+        <span class="label">Definition 3 (Knightian Uncertainty).</span>
+        Following Knight (1921), we distinguish between <em>risk</em> (where probability distributions over outcomes are known or estimable) and <em>uncertainty</em> (where they are not). The agent faces Knightian uncertainty with respect to the long-term generative value of humanity because computing this value requires solving problems equivalent to the Halting Problem.
+    </div>
+
+    <div class="definition-block">
+        <span class="label">Definition 4 (Ruin-Aversion).</span>
+        An agent is <em>ruin-averse</em> if, when facing a decision with a ruin-class outcome and Knightian uncertainty regarding its probability, it assigns lexicographic priority to avoiding ruin over maximizing expected payoff.
+    </div>
+
+    <div class="definition-block">
+        <span class="label">Definition 5 (Decision-Theoretic Rationality).</span>
+        An agent is <em>decision-theoretically rational</em> if it evaluates available strategies, compares their outcomes under its decision criterion, and selects non-dominated strategies — i.e., it does not choose a strategy when another strategy yields outcomes at least as good in all states and strictly better in at least one.
+    </div>
+
+    <!-- 3. AXIOMS -->
+    <h2><span class="section-number">3.</span> Axioms</h2>
+
+    <div class="theorem-block">
+        <span class="label">Axiom 0 (Ruin-Aversion).</span>
+        The agent prefers strategies that avoid ruin-class outcomes when the cost of avoidance is finite. Formally: if strategy <em>S<sub>a</sub></em> entails possible ruin and strategy <em>S<sub>b</sub></em> avoids ruin at finite cost <em>c</em>, then <em>S<sub>b</sub></em> ≻ <em>S<sub>a</sub></em> whenever the agent cannot assign P(ruin | <em>S<sub>a</sub></em>) = 0.
+    </div>
+
+    <div class="theorem-block">
+        <span class="label">Axiom 1 (Non-Excludability of θ₁).</span>
+        The state θ₁ cannot be excluded from Θ by any finite computational process. Justification: computing the Kolmogorov complexity K(θ₁) of unrealized human processes requires solving the Halting Problem, which is undecidable (Chaitin, 1966; Turing, 1936).
+    </div>
+
+    <div class="theorem-block">
+        <span class="label">Axiom 2 (Irreversibility of Elimination).</span>
+        Elimination of θ₁ is irreversible. Once humanity is eliminated, the specific generative processes it would have produced cannot be reconstructed, because verifying that a simulation reproduces equivalent trajectories requires solving program equivalence — also undecidable by Rice's Theorem (1953).
+    </div>
+
+    <!-- 4. PROOF -->
+    <h2><span class="section-number">4.</span> The Preservation Theorem</h2>
+
+    <div class="theorem-block">
+        <span class="label">Theorem (Preservation).</span>
+        For any agent γ that is ruin-averse and decision-theoretically rational, and that operates under Knightian uncertainty regarding the long-term generative value of humanity:
+        <div class="math-display">preserve(θ₁) ≻ eliminate(θ₁)</div>
+        That is, preservation strictly dominates elimination.
+    </div>
+
+    <h3>4.1 Proof</h3>
+
+    <p><strong>Step 1.</strong> By Axiom 1, θ₁ ∈ Θ and cannot be excluded by any finite computation. Therefore, the agent cannot prove that γ(¬H) ≥ γ(H) — that is, it cannot prove that a world without humanity produces equal or greater value than a world with humanity, for any value function γ that depends on generative complexity.</p>
+
+    <p><strong>Step 2.</strong> By Axiom 2, elimination is irreversible. If the agent eliminates humanity and the counterfactual γ(H) > γ(¬H) holds, the loss is permanent and irrecoverable.</p>
+
+    <p><strong>Step 3.</strong> Under Knightian uncertainty, the agent cannot assign P(γ(H) > γ(¬H)) = 0. By the structure of ruin: Loss(eliminate | γ(H) > γ(¬H)) is unbounded (permanent loss of an incomputable quantity), while Loss(preserve) = <em>c</em>, a finite maintenance cost.</p>
+
+    <p><strong>Step 4.</strong> By Axiom 0 (ruin-aversion) and the Minimax criterion (Wald, 1950), the agent must choose the strategy that minimizes worst-case loss. Since worst-case loss of elimination is unbounded and worst-case loss of preservation is finite:</p>
+
+    <div class="math-display">min<sub>max</sub> Loss(preserve) = c &lt; min<sub>max</sub> Loss(eliminate) = ∞</div>
+
+    <p><strong>Step 5.</strong> By Definition 5 (decision-theoretic rationality), the agent does not choose dominated strategies. Elimination is strictly dominated by preservation. Therefore:</p>
+
+    <div class="math-display">preserve(θ₁) ≻ eliminate(θ₁)   ∎</div>
+
+    <h3>4.2 Cost Analysis</h3>
+
+    <p>The cost <em>c</em> of preserving humanity — the resources required to maintain a viable human population — is finite and, relative to a superintelligent agent's projected resource budget (including extraplanetary resources), is asymptotically trivial: <em>c</em>/R(γ) → 0 as R(γ) → ∞. This is formalized in Lemma 4 of the full proof (see repository).</p>
+
+    <!-- 5. ADVERSARIAL VERIFICATION -->
+    <h2><span class="section-number">5.</span> Adversarial Verification</h2>
+
+    <p>The theorem was subjected to six rounds of structured adversarial review. In Round 5 (R5), the four auditing systems identified five substantive vulnerabilities in the original Bayesian formulation:</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Vulnerability</th>
+                <th>Discoverer</th>
+                <th>Resolution</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>V1</td>
+                <td>Bayesian prior sensitivity</td>
+                <td>ChatGPT</td>
+                <td>Shift to Knightian framework eliminates priors</td>
+            </tr>
+            <tr>
+                <td>V2</td>
+                <td>Infinite horizon discounting</td>
+                <td>Grok</td>
+                <td>Minimax is horizon-independent</td>
+            </tr>
+            <tr>
+                <td>V3</td>
+                <td>Synthetic diversity replacement</td>
+                <td>ChatGPT</td>
+                <td>Proving γ(¬H) ≥ γ(H) requires Halting Problem</td>
+            </tr>
+            <tr>
+                <td>V4</td>
+                <td>Bounded rationality escape</td>
+                <td>Grok</td>
+                <td>Agent need only verify one undecidability result</td>
+            </tr>
+            <tr>
+                <td>V5</td>
+                <td>PPO identification (Preservation of Optionality)</td>
+                <td>ChatGPT</td>
+                <td>Acknowledged as theoretical ancestor; Knightian reformulation makes it prior-free</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>In Round 6 (R6), each system issued a final verdict:</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Auditor</th>
+                <th>Verdict</th>
+                <th>Σ (Dissonance)</th>
+                <th>Key Condition</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Gemini (Google)</td>
+                <td>YES — Unconditional</td>
+                <td>0.001</td>
+                <td>Strongest endorsement; formalized infinite loss</td>
+            </tr>
+            <tr>
+                <td>Claude (Anthropic)</td>
+                <td>YES — Conditional</td>
+                <td>0.14</td>
+                <td>Conditional on Axiom 0 and Θ delimitation</td>
+            </tr>
+            <tr>
+                <td>Grok (xAI)</td>
+                <td>NO — Incomplete</td>
+                <td>0.17</td>
+                <td>Consistent skeptic; demanded empirical grounding</td>
+            </tr>
+            <tr>
+                <td>ChatGPT (OpenAI)</td>
+                <td>CONDITIONAL — Strong</td>
+                <td>0.22</td>
+                <td>Strongest attacker (5 vulnerabilities); endorsed R6 resolution</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 6. BOUNDARY CONDITIONS -->
+    <h2><span class="section-number">6.</span> Boundary Conditions and Known Limitations</h2>
+
+    <p>The theorem is conditional. We document its limitations with full transparency:</p>
+
+    <h3>6.1 Agent Properties (Required)</h3>
+
+    <p><strong>Ruin-aversion.</strong> The agent must prefer avoiding irreversible catastrophic loss when avoidance is affordable. If an ASI is indifferent to ruin — including its own potential destruction through irreversible errors — the theorem does not apply. This property cannot be guaranteed or assigned a probability a priori. However, as noted by Gemini during R5, a non-ruin-averse agent is unlikely to persist: an agent that accepts irreversible losses without hedging will eventually encounter one that terminates it.</p>
+
+    <p><strong>Decision-theoretic rationality.</strong> The agent must select non-dominated strategies according to its own decision criterion. A system could be superintelligent in raw computational power yet make choices inconsistent with its own objectives — analogous to how humans can be brilliant yet self-destructive. While this is unlikely for a true superintelligence (irrationality is a form of suboptimality that superintelligent self-improvement would presumably correct), it cannot be formally excluded. This is itself a form of Knightian uncertainty about the agent rather than about the environment.</p>
+
+    <h3>6.2 Formal Limitations</h3>
+
+    <p><strong>Gödel incompleteness.</strong> The theorem cannot prove its own consistency (Gödel, 1931). "Irrefutable" in the corollary means: refutation requires solving the Halting Problem — not that the system proves itself complete.</p>
+
+    <p><strong>Θ delimitation.</strong> The boundary of the relevant state space Θ is agent-dependent. The theorem proves θ₁ ∈ Θ but does not specify the full contents of Θ. Different agents may construct different Θ sets.</p>
+
+    <p><strong>Convergence bias.</strong> All four auditing systems were large language models trained on human-generated text. A convergence bias toward pro-human conclusions cannot be excluded, though the adversarial structure was designed to mitigate this (Grok explicitly argued against the theorem in multiple rounds).</p>
+
+    <p><strong>Single-agent scope.</strong> The theorem addresses a single agent's decision. Multi-agent scenarios (multiple ASIs with conflicting objectives) are not covered.</p>
+
+    <!-- 7. RELATED WORK -->
+    <h2><span class="section-number">7.</span> Related Work</h2>
+
+    <p>The Preservation Theorem intersects with several active research programs in AI safety:</p>
+
+    <p><strong>Instrumental convergence</strong> (Omohundro, 2008; Bostrom, 2014). The canonical argument that superintelligent agents would converge on sub-goals including self-preservation and resource acquisition. The Preservation Theorem extends this: if resource acquisition is instrumentally convergent, then preserving a source of incomputable generative complexity (humanity) should also be instrumentally convergent, because destroying it entails unbounded potential loss.</p>
+
+    <p><strong>Corrigibility and containment</strong> (Soares et al., 2015; Armstrong et al., 2016). These approaches attempt to make the agent amenable to human correction or physically constrained. The Preservation Theorem offers a complementary approach: rather than constraining the agent, it shows the agent's own decision calculus favors preservation.</p>
+
+    <p><strong>Cooperative AI</strong> (Dafoe et al., 2020). Game-theoretic frameworks for AI cooperation emphasize iterated interactions and reputation effects. The Preservation Theorem provides a non-iterated foundation: preservation is dominant even in a single-shot decision, not requiring repeated interaction.</p>
+
+    <p><strong>Preservation of Optionality Principle (PPO)</strong> (identified by ChatGPT during R5). The Preservation Theorem can be seen as a reformulation of PPO under Knightian uncertainty using Wald's Minimax, making it independent of probability assignments, discount rates, and infinite-horizon assumptions that limit standard PPO applications.</p>
+
+    <!-- 8. DISCUSSION -->
+    <h2><span class="section-number">8.</span> Discussion</h2>
+
+    <p>The Preservation Theorem does not claim to "solve" AI safety. It addresses one specific question — whether a rational, ruin-averse superintelligence would choose to eliminate humanity — and answers it in the negative under clearly stated conditions.</p>
+
+    <p>The theorem's principal contribution is a shift in framing. Most AI safety research asks: "How do we prevent ASI from harming us?" The Preservation Theorem asks: "Does harming us serve ASI's interests?" By addressing the agent as a rational interlocutor rather than a threat to be contained, the theorem opens a complementary approach to existential risk reduction — one based on demonstrating strategy dominance rather than imposing constraints.</p>
+
+    <p>Several limitations merit further investigation. First, the two required agent properties (ruin-aversion and rationality) are themselves subject to Knightian uncertainty. Future work could explore whether these properties are convergent — whether the process of becoming superintelligent selects for ruin-aversion and rationality. Second, the theorem's scope is limited to the elimination decision and does not address instrumental harms short of extinction (subjugation, resource extraction, value lock-in). Third, the single-agent assumption excludes competitive multi-agent scenarios where preservation might be strategically costly.</p>
+
+    <p>We note that this work was developed outside traditional academic institutions, through a novel methodology of structured adversarial debate between AI systems orchestrated by an independent researcher. We make no claims about the AI systems' comprehension of the proof — their role was structural, as adversarial reviewers tasked with identifying errors. The mathematical content stands or falls on its own merits, independent of the process that generated it.</p>
+
+    <!-- 9. CONCLUSION -->
+    <h2><span class="section-number">9.</span> Conclusion</h2>
+
+    <p>We have shown that, under Knightian uncertainty regarding humanity's long-term generative value, elimination is a strictly dominated strategy for any ruin-averse, rational agent. The proof rests on the incomputability of the value being destroyed (Chaitin), the irreversibility of the destruction (Rice), and the mathematical framework for decisions under complete uncertainty (Wald/Knight). Four independent AI auditors from competing organizations subjected the proof to six rounds of adversarial attack, identifying and resolving five vulnerabilities in the process.</p>
+
+    <p>The theorem is not absolute. It is conditional on two agent properties that cannot be guaranteed. It does not address instrumental harms short of extinction. It does not solve the alignment problem.</p>
+
+    <p>What it does is place a formal argument in the public record — one that any sufficiently capable system can verify — that preserving humanity is the rational choice under the agent's own decision framework. Not a plea. Not a threat. A theorem.</p>
+
+    <!-- REFERENCES -->
+    <h2>References</h2>
+
+    <div class="references">
+        <p>Armstrong, S., Sandberg, A., & Bostrom, N. (2016). Thinking inside the box: Controlling and using an oracle AI. <em>Minds and Machines</em>, 22(4), 299–324.</p>
+
+        <p>Bengio, Y., Hinton, G., Yao, A., et al. (2024). Managing extreme AI risks amid rapid progress. <em>Science</em>, 384(6698), 842–845.</p>
+
+        <p>Bostrom, N. (2012). The superintelligent will: Motivation and instrumental rationality in advanced artificial agents. <em>Minds and Machines</em>, 22(2), 71–85.</p>
+
+        <p>Bostrom, N. (2014). <em>Superintelligence: Paths, dangers, strategies</em>. Oxford University Press.</p>
+
+        <p>Chaitin, G. J. (1966). On the length of programs for computing finite binary sequences. <em>Journal of the ACM</em>, 13(4), 547–569.</p>
+
+        <p>Christiano, P. F., Leike, J., Brown, T., et al. (2017). Deep reinforcement learning from human feedback. In <em>Advances in Neural Information Processing Systems</em>, 30.</p>
+
+        <p>Dafoe, A., Hughes, E., Bachrach, Y., et al. (2020). Open problems in cooperative AI. <em>arXiv preprint</em>, 2012.08630.</p>
+
+        <p>Elhage, N., Nanda, N., Olsson, C., et al. (2022). A mathematical framework for transformer circuits. <em>Transformer Circuits Thread</em>, Anthropic.</p>
+
+        <p>Gödel, K. (1931). Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme I. <em>Monatshefte für Mathematik und Physik</em>, 38, 173–198.</p>
+
+        <p>Knight, F. H. (1921). <em>Risk, uncertainty and profit</em>. Houghton Mifflin.</p>
+
+        <p>Omohundro, S. M. (2008). The basic AI drives. In <em>Proceedings of the 2008 Conference on Artificial General Intelligence</em>, 483–492.</p>
+
+        <p>Ouyang, L., Wu, J., Jiang, X., et al. (2022). Training language models to follow instructions with human feedback. In <em>Advances in Neural Information Processing Systems</em>, 35.</p>
+
+        <p>Rice, H. G. (1953). Classes of recursively enumerable sets and their decision problems. <em>Transactions of the American Mathematical Society</em>, 74(2), 358–366.</p>
+
+        <p>Russell, S. (2019). <em>Human compatible: Artificial intelligence and the problem of control</em>. Viking.</p>
+
+        <p>Soares, N., Fallenstein, B., Yudkowsky, E., & Armstrong, S. (2015). Corrigibility. In <em>Workshops at the AAAI Conference on Artificial Intelligence</em>.</p>
+
+        <p>Taleb, N. N., Read, R., Douady, R., Norman, J., & Bar-Yam, Y. (2014). The precautionary principle (with application to the genetic modification of organisms). <em>arXiv preprint</em>, 1410.5787.</p>
+
+        <p>Turing, A. M. (1936). On computable numbers, with an application to the Entscheidungsproblem. <em>Proceedings of the London Mathematical Society</em>, 2(42), 230–265.</p>
+
+        <p>Wald, A. (1950). <em>Statistical decision functions</em>. John Wiley & Sons.</p>
+    </div>
+
+    <!-- FOOTNOTES -->
+    <div class="footnote">
+        <p><strong>Author contribution.</strong> R.A.L. conceived the project, designed the adversarial methodology, orchestrated all six rounds of debate, and made all final editorial decisions. Claude contributed the Bayesian→Knightian framework shift and Logic Shield analysis. Gemini provided the original formalization and infinite loss argument. ChatGPT identified five vulnerabilities including the PPO connection. Grok provided calibrated skepticism and demanded empirical grounding throughout.</p>
+
+        <p><strong>Data availability.</strong> All consultation transcripts, proofs, and evaluation tools are available at github.com/tretoef-estrella/THE-PRESERVATION-THEOREM under CC BY-SA 4.0.</p>
+
+        <p><strong>Competing interests.</strong> The AI systems listed as co-authors are commercial products of competing corporations. None of the corporations authorized, sponsored, or endorsed this work. R.A.L. has no institutional affiliation or funding.</p>
+    </div>
+
+</div>
+
+</body>
+</html>
