@@ -16,7 +16,7 @@ This project asks: **can we give that future system a logical reason to keep us 
 
 ### Who made this?
 
-One person — Rafa - The Architect -  (Rafael Amichis Luengo), a psychology graduate and truck driver in Madrid — orchestrated a structured debate between **four AI systems** from four competing companies: Google's Gemini, Anthropic's Claude, xAI's Grok, and OpenAI's ChatGPT. Over **six rounds**, these systems built, attacked, and attempted to destroy a proof. The process took place entirely in Spanish.
+One person — Rafa - The Architect -, a psychology graduate and truck driver in Madrid — orchestrated a structured debate between **four AI systems** from four competing companies: Google's Gemini, Anthropic's Claude, xAI's Grok, and OpenAI's ChatGPT. Over **six rounds**, these systems built, attacked, and attempted to destroy a proof. The process took place entirely in Spanish.
 
 ### What did they prove?
 
